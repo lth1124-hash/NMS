@@ -1,0 +1,182 @@
+{
+  "itscc_archive": {
+    "class3-126": {
+      "date": "2023-12-20",
+      "hash": "b35d6a9ed12dbbe1354d80299b9cdb2f4b2e6199858fc710ea561b9aed52d938",
+      "link": "https://itscc.kr/bbs/view.do?board_id=126&board_class=3&board_lang=KOR",
+      "title": "정보보호시스템 공통평가기준(CC/CEM 2022, 한글판)"
+    },
+    "class3-127": {
+      "date": "2024-03-21",
+      "hash": "92d4f0e8a1ad5371d4f66c5a016a9d3b5687beb83d8f1980b26dec0985c82f5e",
+      "link": "https://itscc.kr/bbs/view.do?board_id=127&board_class=3&board_lang=KOR",
+      "title": "정보보호제품 평가인증 안내서(2023)"
+    },
+    "class3-128": {
+      "date": "2024-05-14",
+      "hash": "f6e2cb7607be1b311f0170c668dabc91a34dbdc981695a543ed7330999696100",
+      "link": "https://itscc.kr/bbs/view.do?board_id=128&board_class=3&board_lang=KOR",
+      "title": "인증제품 취약성 사후관리 절차 V1.1"
+    },
+    "class3-129": {
+      "date": "2024-06-05",
+      "hash": "df74d6a3a0e4cccc26411b11f68a182cb9a98e87cf221cf610fa6840bcd7243b",
+      "link": "https://itscc.kr/bbs/view.do?board_id=129&board_class=3&board_lang=KOR",
+      "title": "CCRA 보조문서 보증 연속성 적용 가이드 업데이트(2024. 6. 5.)"
+    },
+    "class3-130": {
+      "date": "2024-06-05",
+      "hash": "7533835c488552a3f5abe3ad3a00b51481fd80e14add214fba37b49b540cc7bb",
+      "link": "https://itscc.kr/bbs/view.do?board_id=130&board_class=3&board_lang=KOR",
+      "title": "CCRA 보조문서 인증서 유효성 적용 가이드 업데이트(2024. 6. 5.)"
+    },
+    "class3-131": {
+      "date": "2024-08-07",
+      "hash": "82e27e5bf7503edbf15bc7078f82834d75f9676392fdb80a8ee42f8cb417eb2e",
+      "link": "https://itscc.kr/bbs/view.do?board_id=131&board_class=3&board_lang=KOR",
+      "title": "정보보호시스템 공통평가기준(CC/CEM 2022 Errata V1.1, 한글판)"
+    },
+    "class3-133": {
+      "date": "2024-10-21",
+      "hash": "e67855312d52684b9676decf484bb0298c92ff4563642396510001f9f168ff63",
+      "link": "https://itscc.kr/bbs/view.do?board_id=133&board_class=3&board_lang=KOR",
+      "title": "정보보호제품 평가인증 해설서 V1.5(2024. 10. 21.)"
+    },
+    "class3-134": {
+      "date": "2025-04-11",
+      "hash": "f41e3a91372ae4b00d6692b66811731e524cecb0d40276854b1802e06f90bf3d",
+      "link": "https://itscc.kr/bbs/view.do?board_id=134&board_class=3&board_lang=KOR",
+      "title": "국가용 보안요구사항 V3.0 기반의 국내용 보안목표명세서 작성 가이드(3종)"
+    },
+    "class3-136": {
+      "date": "2025-09-24",
+      "hash": "65fd546eaa008ad8e570df182da9a13fb6afd879cf00bfbd79581bbe7e8d82bd",
+      "link": "https://itscc.kr/bbs/view.do?board_id=136&board_class=3&board_lang=KOR",
+      "title": "정보보호시스템 공통평가기준(CC/CEM 2022 Errata V1.1, 한글판 수정본)"
+    },
+    "class3-137": {
+      "date": "2026-02-13",
+      "hash": "bbf83b0f8bb83c2bab559900f7708b80f7a0a1ddc6f26a6456b36901671f9b33",
+      "link": "https://itscc.kr/bbs/view.do?board_id=137&board_class=3&board_lang=KOR",
+      "title": "정보보호시스템 공통평가기준(CC/CEM 2022 Errata V1.2, 한글판 수정본)"
+    }
+  },
+  "itscc_notice": {
+    "class1-121": {
+      "date": "2023-08-25",
+      "hash": "3efce8d5acac0dadff4177d4a2a8a69b78da5b6944def3545af5dd7c54e49102",
+      "link": "https://itscc.kr/bbs/view.do?board_id=121&board_class=1&board_lang=KOR",
+      "title": "CC:2022 및 CEM:2022 전환 정책"
+    },
+    "class1-124": {
+      "date": "2023-10-23",
+      "hash": "61eff342b3eadb59776b3a28d178eb40ab2bb94ba86cee2bc9271f57d28860ba",
+      "link": "https://itscc.kr/bbs/view.do?board_id=124&board_class=1&board_lang=KOR",
+      "title": "인증제품 정보 확인 시 유의사항"
+    },
+    "class1-125": {
+      "date": "2023-11-07",
+      "hash": "6d02d8d882830d500fa0816aa33d942bf3a7d421efbeeff08540f06b6fc215ea",
+      "link": "https://itscc.kr/bbs/view.do?board_id=125&board_class=1&board_lang=KOR",
+      "title": "제1회 ICT 공급망 보안 컨퍼런스 개최 안내"
+    },
+    "class1-135": {
+      "date": "2025-04-17",
+      "hash": "d127faa89eb083cba17b582be5bfdea23a3b90cb4987c3ee460895af8ec2e855",
+      "link": "https://itscc.kr/bbs/view.do?board_id=135&board_class=1&board_lang=KOR",
+      "title": "제28회 CCUF Workshop 및 ICCC 2025 개최 안내"
+    },
+    "class1-85": {
+      "date": "2021-01-19",
+      "hash": "aea4d0a7fc212538ff3c75bfdb29c929a9922002c6c09729e386adf8dbe7dd88",
+      "link": "https://itscc.kr/bbs/view.do?board_id=85&board_class=1&board_lang=KOR",
+      "title": "CC인증, 보안적합성 및 보안기능 시험, 암호모듈검증 관련 이메일 문의 양식"
+    },
+    "class1-88": {
+      "date": "2021-03-31",
+      "hash": "cae5d137ee45a244beed42246526fe0d8bf0ab755626b70f83fd0146ff10afc7",
+      "link": "https://itscc.kr/bbs/view.do?board_id=88&board_class=1&board_lang=KOR",
+      "title": "통합로그관리제품(단순 로그수집 제품에 한함) 관련 공지"
+    },
+    "class1-89": {
+      "date": "2021-04-02",
+      "hash": "1746b696b3157bcc59f948118601f3b613536ea9ee8db947f0da9b59d05cb9d6",
+      "link": "https://itscc.kr/bbs/view.do?board_id=89&board_class=1&board_lang=KOR",
+      "title": "국가용 보안요구사항 개정에 따른 정보보호제품 평가·인증 시 적용 절차"
+    },
+    "class1-90": {
+      "date": "2021-04-23",
+      "hash": "ef607af2610e9424252786bff5de8752db0815c747806f14f97465e11ed162da",
+      "link": "https://itscc.kr/bbs/view.do?board_id=90&board_class=1&board_lang=KOR",
+      "title": "'낮은 버전의 커널을 기반한 ICT제품 공공조달 기준 공지(2020. 10. 30.)'에 따른 국내용 인증 시 유의사항"
+    },
+    "class1-95": {
+      "date": "2021-05-17",
+      "hash": "91014d1ce829a3b36e08498ee33166d101500bf53b23fe3322752f3682166064",
+      "link": "https://itscc.kr/bbs/view.do?board_id=95&board_class=1&board_lang=KOR",
+      "title": "정보보호제품 평가·인증 제도개선(안)에 따른 관련 규정 개정 공지"
+    },
+    "class1-96": {
+      "date": "2021-06-01",
+      "hash": "f2e52218fd4f8ce09607a6d959ef8a2ef56934723e80679473d4fca81f7917ee",
+      "link": "https://itscc.kr/bbs/view.do?board_id=96&board_class=1&board_lang=KOR",
+      "title": "홈페이지 통해 국내용 인증제품의 인증서(이미지) 제공 안내"
+    }
+  },
+  "itscc_rule": {
+    "class2-120": {
+      "date": "2022-12-08",
+      "hash": "092c4dcff6ed2ddd360de16fbb21176652621376718fa51b89c92315a584a2b6",
+      "link": "https://itscc.kr/bbs/view.do?board_id=120&board_class=2&board_lang=KOR",
+      "title": "정보보호시스템 평가·인증 등에 관한 고시(과학기술정보통신부고시 제2022-61호)"
+    },
+    "class2-138": {
+      "date": "2026-04-07",
+      "hash": "162479979c1d525f8f4d52c4c241f001b853ff3a5843628ce0fe6e5f4eaea519",
+      "link": "https://itscc.kr/bbs/view.do?board_id=138&board_class=2&board_lang=KOR",
+      "title": "정보보호제품 평가·인증 수행규정 개정(2026. 4. 7.)"
+    },
+    "class2-14": {
+      "date": "2016-06-28",
+      "hash": "b94089e5c1f1600d6a14fa317bdfbdd3940268848a0a36a6e913ebb27580513a",
+      "link": "https://itscc.kr/bbs/view.do?board_id=14&board_class=2&board_lang=KOR",
+      "title": "정보보호시스템 평가·인증 지침(미래창조과학부고시 제2016-73호, 2016. 6. 27.)"
+    },
+    "class2-18": {
+      "date": "2017-06-27",
+      "hash": "5056f1341315d03622c00823ab14ab7707fe64f34dfe25f79d8c3456c050ad19",
+      "link": "https://itscc.kr/bbs/view.do?board_id=18&board_class=2&board_lang=KOR",
+      "title": "정보보호제품 평가·인증 수행규정(2017. 6. 26.)"
+    },
+    "class2-2": {
+      "date": "2011-01-24",
+      "hash": "64a4dca511f7a21d892e445f45c554577d63c90a9bbed46952d73bb36f3f6281",
+      "link": "https://itscc.kr/bbs/view.do?board_id=2&board_class=2&board_lang=KOR",
+      "title": "정보보호시스템 평가·인증지침(미래창조과학부고시 제2013-52호, 2013. 8. 8.)"
+    },
+    "class2-22": {
+      "date": "2017-09-12",
+      "hash": "580f835a82afe833daea3ed9178823d1798168d9fc6f4d4ebf0156488f318f19",
+      "link": "https://itscc.kr/bbs/view.do?board_id=22&board_class=2&board_lang=KOR",
+      "title": "정보보호제품 평가·인증 수행규정(2017. 9. 12.)"
+    },
+    "class2-23": {
+      "date": "2017-09-13",
+      "hash": "e87c1e30947c77cb66a3238bbb6705c0261269dd0545abd4f379182f66161f29",
+      "link": "https://itscc.kr/bbs/view.do?board_id=23&board_class=2&board_lang=KOR",
+      "title": "정보보호시스템 평가·인증 지침(과학기술정보통신고시 제2017-7호, 2017. 8. 24.)"
+    },
+    "class2-6": {
+      "date": "2012-11-08",
+      "hash": "a0726934fb0306100883f9b0e9b171a4eb0f1825ce0c4dc4a68a19dd2357e21a",
+      "link": "https://itscc.kr/bbs/view.do?board_id=6&board_class=2&board_lang=KOR",
+      "title": "정보보호제품 평가·인증 수행규정(2012. 11.)"
+    },
+    "class2-91": {
+      "date": "2021-05-17",
+      "hash": "bb255104cb65a7d63db6558fe638d38272c733d8381d4c3c94484ddc32a0a31a",
+      "link": "https://itscc.kr/bbs/view.do?board_id=91&board_class=2&board_lang=KOR",
+      "title": "정보보호제품 평가·인증 수행규정 개정(2021. 5. 17.)"
+    }
+  }
+}

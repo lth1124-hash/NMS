@@ -1,0 +1,56 @@
+# 모니터링할 사이트 목록.
+# 사이트를 추가하려면 아래 예시처럼 항목을 하나 더 추가하면 된다.
+# 실제 대상 사이트가 정해지면 이 파일에 site 블록을 채워 넣는다.
+#
+# 필드 설명:
+#   id            내부 식별자 (영문/숫자/언더스코어). 상태 저장(data/seen_state.json)의 키로 쓰임.
+#                 나중에 바꾸면 이전 상태와 매칭이 끊겨 전체가 "신규"로 재감지되니 신중히 정할 것.
+#   name          이메일에 표시될 사람이 보는 이름
+#   list_url      공지사항 목록 페이지 URL
+#   selectors     목록 페이지에서 게시물 하나하나를 뽑아내는 CSS 셀렉터
+#     item          게시물 한 건에 해당하는 반복 요소 (예: 표의 각 행, 리스트의 각 li)
+#     title         제목 요소 (item 기준 상대 셀렉터)
+#     link          링크 요소 (title과 같은 요소를 가리켜도 됨, href 속성을 사용)
+#     date          날짜 요소 (없는 사이트는 이 줄을 지워도 됨)
+#   id_strategy   게시물 고유 식별 방법: link(기본, 가장 안전) | title_date
+#   parser        기본값은 generic(위 selectors 사용). custom이면 module 지정 필요
+#   module        parser: custom일 때, src/sites/ 아래 커스텀 파서 모듈 경로
+#                 (예: sites.example_agency → src/sites/example_agency.py,
+#                  해당 모듈에 parse(site_cfg) -> list[dict] 함수 필요, src/sites/_template.py 참고)
+
+sites:
+  # itscc.kr (IT보안인증사무국) - 하나의 사이트, 메뉴 3개(공지사항/관련규정/자료실).
+  # 목록의 제목이 JS로 폼을 POST하는 방식이라 범용 selectors로 안 되고,
+  # src/sites/itscc.py 커스텀 파서를 사용한다 (board_class로 메뉴 구분).
+  - id: itscc_notice
+    name: "ITSCC 공지사항"
+    list_url: "https://itscc.kr/bbs/listA.do"
+    board_class: 1
+    parser: custom
+    module: sites.itscc
+
+  - id: itscc_rule
+    name: "ITSCC 관련규정"
+    list_url: "https://itscc.kr/bbs/listB.do"
+    board_class: 2
+    parser: custom
+    module: sites.itscc
+
+  - id: itscc_archive
+    name: "ITSCC 자료실"
+    list_url: "https://itscc.kr/bbs/listC.do"
+    board_class: 3
+    parser: custom
+    module: sites.itscc
+
+# ── 작성 예시 (참고용, 실제로 쓸 때는 주석을 풀고 값을 실제 사이트에 맞게 채운다) ──
+# sites:
+#   - id: example_agency
+#     name: "예시기관 공지사항"
+#     list_url: "https://example.go.kr/board/notice"
+#     selectors:
+#       item: "table.board-list tbody tr"
+#       title: "td.title a"
+#       link: "td.title a"
+#       date: "td.date"
+#     id_strategy: link

@@ -1,0 +1,44 @@
+name: Check Notices
+
+on:
+  schedule:
+    # cron은 UTC 기준. KST(UTC+9) 09:00 = UTC 00:00, KST 18:00 = UTC 09:00
+    - cron: "0 0 * * *"
+    - cron: "0 9 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write # data/seen_state.json 자동 커밋을 위해 필요
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run NMS
+        working-directory: src
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          NOTIFY_TO: ${{ secrets.NOTIFY_TO }}
+        run: python main.py
+
+      - name: Commit updated state
+        run: |
+          git config user.name "nms-bot"
+          git config user.email "nms-bot@users.noreply.github.com"
+          git add data/seen_state.json
+          git diff --cached --quiet || git commit -m "chore: update seen_state.json [skip ci]"
+          git push
