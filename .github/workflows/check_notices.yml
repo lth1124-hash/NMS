@@ -28,6 +28,9 @@ jobs:
       - name: Run NMS
         working-directory: src
         env:
+          # ntfy.sh: NTFY_TOPIC만 등록하면 됨 (가입 불필요, 추천)
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          # 이메일(SMTP)도 같이/대신 쓰고 싶으면 아래도 등록 (선택)
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           SMTP_USER: ${{ secrets.SMTP_USER }}

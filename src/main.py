@@ -1,4 +1,4 @@
-"""NMS 진입점: 설정된 모든 사이트를 순회하며 신규/변경 게시물을 감지하고 이메일로 알린다.
+"""NMS 진입점: 설정된 모든 사이트를 순회하며 신규/변경/삭제 게시물을 감지하고 알린다.
 
 실행: 프로젝트 루트에서 `python src/main.py`
 (스크립트를 직접 실행하면 파이썬이 src/ 폴더를 자동으로 sys.path에 넣어주므로
@@ -74,8 +74,7 @@ def main() -> int:
         )
 
     if notifier.has_notifiable_content(results, failures):
-        notifier.send_email(results, failures)
-        print("알림 이메일 발송 완료")
+        notifier.send_all(results, failures)
     else:
         print("알릴 내용 없음")
 

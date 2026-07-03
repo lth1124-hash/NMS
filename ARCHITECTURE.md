@@ -12,13 +12,14 @@
 |---|---|
 | 실행 환경 | GitHub Actions (Public 저장소, 무료·무제한 실행) |
 | 스케줄 | 매일 KST 09:00, 18:00 (+ 수동 실행 버튼) |
-| 알림 수단 | 이메일 (SMTP, 예: Gmail 앱 비밀번호) |
+| 알림 수단 | ntfy.sh (가입 불필요, 기본) + 이메일 SMTP (선택) |
 | 언어 | Python 3.11+ |
 | 모니터링 대상 | 미정 → 설정 파일로 확장 가능하게 설계 |
 
 Public 저장소를 쓰므로 `sites.yaml`에는 사이트 이름/URL/CSS 셀렉터만 들어간다.
 이 정보는 애초에 공개된 정부 공지사항 페이지 주소이므로 공개되어도 보안 문제가 없다.
-계정 정보(SMTP 비밀번호 등)는 저장소에 절대 넣지 않고 **GitHub Secrets**로만 관리한다.
+알림 채널 정보(ntfy 토픽명, SMTP 계정/비밀번호 등)는 저장소에 절대 넣지 않고
+**GitHub Secrets**로만 관리한다.
 
 ## 3. 폴더 구조
 
@@ -32,10 +33,11 @@ NMS/
 ├── src/
 │   ├── main.py                           # 진입점: 전체 흐름 조율
 │   ├── crawler.py                        # 사이트 목록 페이지 요청 + 파싱 (설정 기반 범용 파서)
-│   ├── differ.py                         # 신규글/변경글 판별
-│   ├── notifier.py                       # 이메일 작성/발송
+│   ├── differ.py                         # 신규글/변경글/삭제후보 판별
+│   ├── notifier.py                       # ntfy/이메일 알림 작성/발송
 │   ├── state_store.py                    # 상태 파일 읽기/쓰기
 │   └── sites/
+│       ├── itscc.py                      # itscc.kr 전용 커스텀 파서
 │       └── _template.py                  # 범용 파서로 안 되는 특이 사이트용 커스텀 파서 템플릿
 ├── requirements.txt
 ├── .env.example                          # 로컬 테스트용 환경변수 예시
@@ -58,9 +60,10 @@ NMS/
         │     │      (title, link, date, 고유 id)
         │     └─ differ.py  → 이전 상태와 비교
         │            ├─ 신규 글 (id가 이전에 없음)
-        │            └─ 변경 글 (id는 있는데 title/date 해시가 다름)
+        │            ├─ 변경 글 (id는 있는데 title/date 해시가 다름)
+        │            └─ 사라진 글 → crawler.check_alive()로 재확인 → 삭제 확정 or 계속 추적
         │
-        ├─ 신규/변경이 하나라도 있으면 → notifier.py → 이메일 발송
+        ├─ 신규/변경/삭제가 하나라도 있으면 → notifier.py → ntfy/이메일 알림 발송
         ├─ data/seen_state.json 갱신
         └─ (workflow에서) 변경된 seen_state.json을 자동 git commit & push
 ```
@@ -109,9 +112,12 @@ selectors 값을 채워줘" 또는 "이 사이트는 JS 렌더링이라 custom p
 
 ### 5.4 `src/notifier.py`
 
-- 신규/변경 항목을 사이트별로 묶어 HTML 이메일 본문 생성
-- `smtplib`로 발송 (SMTP 서버/계정 정보는 환경변수로 주입 → GitHub Secrets)
-- 발송 대상이 여러 명일 수 있으므로 `NOTIFY_TO`는 콤마로 구분된 리스트 지원
+- 신규/변경/삭제 항목을 사이트별로 묶어 알림 본문 생성
+- 설정된 환경변수에 따라 알림 수단을 자동으로 판단해서 전부 보낸다 (`send_all`):
+  - `NTFY_TOPIC`이 있으면 → [ntfy.sh](https://ntfy.sh)로 푸시 알림 (가입 불필요, JSON POST 한 번)
+  - `SMTP_HOST`가 있으면 → `smtplib`로 이메일 발송 (선택 사항)
+  - 둘 다 없으면 콘솔에만 출력 (로컬 테스트용)
+- 이메일 발송 대상이 여러 명일 수 있으므로 `NOTIFY_TO`는 콤마로 구분된 리스트 지원
 
 ### 5.5 `src/state_store.py`
 
@@ -123,15 +129,19 @@ selectors 값을 채워줘" 또는 "이 사이트는 JS 렌더링이라 custom p
 ## 6. 알림 실패/사이트 오류 처리
 
 - 사이트 A 크롤링이 실패해도 사이트 B, C는 계속 진행 (사이트별 `try/except`)
-- 실패한 사이트는 로그에 남기고, **실패 자체도 이메일에 별도 섹션("확인 실패")으로 표시**
+- 실패한 사이트는 로그에 남기고, **실패 자체도 알림에 별도 섹션("확인 실패")으로 표시**
   → 사이트 구조가 바뀌어서 셀렉터가 깨졌을 때 조용히 놓치는 것을 방지
+- 목록에서 사라진 게시물은 바로 "삭제"로 단정하지 않고, 링크에 다시 접속해서
+  살아있는지 확인(`crawler.check_alive`) 후 확정한다 (페이지네이션으로 밀려난 것과
+  실제 삭제를 구분하기 위함). itscc.kr은 없는 글도 HTTP 200을 주지만 제목이
+  빈 값으로 오는 걸 이용해 `src/sites/itscc.py`의 `check_alive()`에서 판별한다.
 - 전체 실행이 예외로 죽는 경우는 GitHub Actions 자체가 실패 상태로 표시되고,
   저장소 owner에게 GitHub 기본 알림(이메일)이 감 (추가 설정 없이도 안전망 역할)
 
 ## 7. 향후 확장 지점 (지금 당장 구현하지 않음, 구조만 열어둠)
 
 - **알림 수단 추가**: `notifier.py`에 `send_slack()`, `send_teams()` 등을 추가하고
-  `main.py`에서 여러 notifier를 리스트로 호출하도록 확장
+  `send_all()`에서 같이 호출하도록 확장 (ntfy/이메일과 동일한 패턴)
 - **JS 렌더링 사이트**: Playwright 등을 쓰는 custom parser 모듈 추가
 - **체크 주기 세분화**: 워크플로우 cron에 트리거를 추가하면 됨 (사이트별로 다른 주기가
   필요해지면 `sites.yaml`에 `schedule_group` 필드를 추가해 필터링하는 방식으로 확장)
