@@ -29,7 +29,8 @@ def _build_html(results: list[dict], failures: list[dict]) -> str:
         for item in r["updated_items"]:
             parts.append(_item_line_html("변경", item))
         for item in r["deleted_items"]:
-            parts.append(f'<li>[삭제] {item["title"]}{f" ({item["date"]})" if item.get("date") else ""}</li>')
+            date_part = f" ({item['date']})" if item.get("date") else ""
+            parts.append(f"<li>[삭제] {item['title']}{date_part}</li>")
         parts.append("</ul>")
 
     if failures:

@@ -1,12 +1,10 @@
 name: Check Notices
 
 on:
-  # 원인 조사 중이라 스케줄은 잠시 꺼둠 (반복 실패 메일 방지). 원인 파악되면 아래
-  # schedule 블록의 주석을 다시 풀 것.
-  # schedule:
-  #   # cron은 UTC 기준. KST(UTC+9) 09:00 = UTC 00:00, KST 18:00 = UTC 09:00
-  #   - cron: "0 0 * * *"
-  #   - cron: "0 9 * * *"
+  schedule:
+    # cron은 UTC 기준. KST(UTC+9) 09:00 = UTC 00:00, KST 18:00 = UTC 09:00
+    - cron: "0 0 * * *"
+    - cron: "0 9 * * *"
   workflow_dispatch: {}
 
 permissions:
